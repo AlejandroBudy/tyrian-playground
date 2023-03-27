@@ -1,0 +1,12 @@
+.idea/
+.bsp/
+.dist/
+node_modules/
+target/
+project/target/
+project/project/
+
+yarn.lock
+
+dist
+.parcel-cache

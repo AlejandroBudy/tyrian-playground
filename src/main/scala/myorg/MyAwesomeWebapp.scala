@@ -4,29 +4,38 @@ import cats.effect.IO
 import tyrian.Html.*
 import tyrian.*
 
+import java.util.UUID
 import scala.scalajs.js.annotation.*
+import scala.concurrent.duration.*
 
 @JSExportTopLevel("TyrianApp")
 object MyAwesomeWebapp extends TyrianApp[Msg, Model]:
 
   def init(flags: Map[String, String]): (Model, Cmd[IO, Msg]) =
-    (0, Cmd.None)
+    SpacesModel.empty -> Cmd.None
 
   def update(model: Model): Msg => (Model, Cmd[IO, Msg]) =
-    case Msg.Increment => (model + 1, Cmd.None)
-    case Msg.Decrement => (model - 1, Cmd.None)
+    case Msg.AddSpace(space) => SpacesModel(model.spaces :+ space) -> Cmd.None
+    case Msg.DeleteSpace(id) =>
+      SpacesModel(model.spaces.filterNot(_.spaceId == id)) -> Cmd.None
 
   def view(model: Model): Html[Msg] =
-    div(
-      button(onClick(Msg.Decrement))("-"),
-      div(model.toString),
-      button(onClick(Msg.Increment))("+")
-    )
+    render(model)
 
   def subscriptions(model: Model): Sub[IO, Msg] =
-    Sub.None
+    Sub.make(
+      "pulse",
+      fs2.Stream
+        .awakeEvery[IO](5.seconds)
+        .map(t =>
+          Msg.AddSpace(
+            SpacePreview(t.toString(), "Random one", "nowhere")
+          )
+        )
+    )
 
-type Model = Int
+type Model = SpacesModel
 
 enum Msg:
-  case Increment, Decrement
+  case AddSpace(space: SpacePreview)
+  case DeleteSpace(spaceId: String)
