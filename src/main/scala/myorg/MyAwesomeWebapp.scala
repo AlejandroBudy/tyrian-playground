@@ -5,8 +5,8 @@ import tyrian.Html.*
 import tyrian.*
 
 import java.util.UUID
-import scala.scalajs.js.annotation.*
 import scala.concurrent.duration.*
+import scala.scalajs.js.annotation.*
 
 @JSExportTopLevel("TyrianApp")
 object MyAwesomeWebapp extends TyrianApp[Msg, Model]:
