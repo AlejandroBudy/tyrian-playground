@@ -3,6 +3,7 @@ package myorg
 import cats.effect.IO
 import tyrian.Html.*
 import tyrian.*
+import tyrian.cmds.Logger
 
 import java.util.UUID
 import scala.concurrent.duration.*
@@ -18,6 +19,7 @@ object MyAwesomeWebapp extends TyrianApp[Msg, Model]:
     case Msg.AddSpace(space) => SpacesModel(model.spaces :+ space) -> Cmd.None
     case Msg.DeleteSpace(id) =>
       SpacesModel(model.spaces.filterNot(_.spaceId == id)) -> Cmd.None
+    case Msg.Lookup(filter) => (model, Logger.info[IO](s"Filtering $filter"))
 
   def view(model: Model): Html[Msg] =
     render(model)
@@ -39,3 +41,4 @@ type Model = SpacesModel
 enum Msg:
   case AddSpace(space: SpacePreview)
   case DeleteSpace(spaceId: String)
+  case Lookup(filter: String)
