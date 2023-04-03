@@ -16,7 +16,7 @@ lazy val myawesomewebapp =
       scalaVersion := "3.2.1",
       organization := "myorg",
       libraryDependencies ++= Seq(
-        "io.indigoengine" %%% "tyrian-io" % "0.6.1",
+        "io.indigoengine" %%% "tyrian-io" % "0.6.2",
         "org.scalameta"   %%% "munit"     % "0.7.29" % Test
       ),
       testFrameworks += new TestFramework("munit.Framework"),
