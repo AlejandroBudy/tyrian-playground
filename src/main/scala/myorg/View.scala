@@ -1,7 +1,8 @@
 package myorg
 
+import tyrian.Html
 import tyrian.Html.*
-import tyrian.{Html, Tyrian}
+import tyrian.Tyrian
 
 def render(model: SpacesModel): Html[Msg] =
   div(
@@ -44,24 +45,24 @@ private def renderHero: Html[Msg] =
 
 private def renderNavbar: Html[Msg] =
   nav(`class` := "navbar navbar-expand-lg bg-primary")(
-    div(`class` := "container")(
+    div(`class` := "container-fluid")(
       a(`class` := "navbar-brand", href := "/")(text("Rocking Spaces")),
       button(
         attributes(
           "class"          -> "navbar-toggler",
           "type"           -> "button",
           "data-bs-toggle" -> "collapse",
-          "data-bs-target" -> "#navbarNav",
+          "data-bs-target" -> "#navId",
           "aria-expanded"  -> "false",
           "aria-label"     -> "Toggle navigation",
-          "aria-controls"  -> "navbarNav"
+          "aria-controls"  -> "navId"
         )
       )(
         span(`class` := "navbar-toggler-icon")()
       ),
-      div(id := "navbarNav", `class` := "collapse navbar-collapse")(
+      div(`class` := "collapse navbar-collapse", id := "navId")(
         ul(
-          `class` := "navbar-nav ms-auto text-center"
+          `class` := "navbar-nav"
         )(
           li(`class` := "nav-item")(
             a(`class` := "nav-link")("spaces")
