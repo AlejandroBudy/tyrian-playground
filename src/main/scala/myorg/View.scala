@@ -8,13 +8,25 @@ def render(model: SpacesModel): Html[Msg] =
   div(
     renderNavbar,
     renderHero,
-    div(
-      model.spaces.map { space =>
-        div(
-          h3(space.title),
-          p(space.address)
-        )
-      }
+    div(`class` := "container bg-red mt-4")(
+      div(`class` := "row row-cols-1 row-cols-md-3 g-4")(
+        model.spaces.map { space =>
+          div(`class` := "col")(
+            div(`class`   := "card h-100")(
+              img(`class` := "card-img-top", src := "..."),
+              div(`class` := "card-body")(
+                p(`class` := "card-title")(space.title)
+              ),
+              ul(`class` := "list-group list-group-flush")(
+                li(`class` := "list-group-item")(space.address)
+              ),
+              div(`class` := "card-body")(
+                a(`class` := "card-link")("ver")
+              )
+            )
+          )
+        }
+      )
     )
   )
 
