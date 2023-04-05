@@ -7,11 +7,13 @@ object SpacesModel:
       SpacePreview(
         spaceId = "space-001",
         title = "Coworking Castellana",
+        description = "Luminoso y centrico",
         address = "plaza castilla2"
       ),
       SpacePreview(
         spaceId = "space-002",
         title = "Coworking Cuzco",
+        description = "Luminoso y centrico",
         address = "plaza cuzco"
       )
     )
@@ -20,5 +22,6 @@ object SpacesModel:
 final case class SpacePreview(
     spaceId: String,
     title: String,
+    description: String,
     address: String
 )

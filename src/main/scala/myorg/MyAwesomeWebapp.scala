@@ -31,7 +31,12 @@ object MyAwesomeWebapp extends TyrianApp[Msg, Model]:
         .awakeEvery[IO](5.seconds)
         .map(t =>
           Msg.AddSpace(
-            SpacePreview(t.toString(), "Random one", "nowhere")
+            SpacePreview(
+              t.toString(),
+              "Random one",
+              description = "Luminoso y centrico",
+              "nowhere"
+            )
           )
         )
     )

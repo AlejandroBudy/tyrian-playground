@@ -13,7 +13,7 @@ def render(model: SpacesModel): Html[Msg] =
         model.spaces.map { space =>
           div(`class` := "col")(
             div(`class`   := "card h-100")(
-              img(`class` := "card-img-top", src := "..."),
+              img(`class` := "card-static-top", src := "assets/images/logo.png"),
               div(`class` := "card-body")(
                 p(`class` := "card-title")(space.title)
               ),
